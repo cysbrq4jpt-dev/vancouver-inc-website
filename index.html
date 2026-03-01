@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>バンクーバー株式会社 | Vancouver Inc.</title>
+  <meta name="description" content="バンクーバー株式会社は、教育用アプリケーションの企画・開発・運営、業務効率化ツールの提供を行うテクノロジーカンパニーです。">
+  <style>
+    /* ========== Reset & Base ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      color: #1a1a2e;
+      line-height: 1.8;
+      background: #fff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========== Utility ========== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 48px;
+    }
+
+    /* ========== Header / Navigation ========== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s;
+    }
+
+    .header.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-logo span {
+      color: #2563eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a4a6a;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #1a1a2e;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      padding: 160px 0 100px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 50%, #f8faff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #2563eb;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: #4a4a6a;
+      line-height: 1.9;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #fff;
+      color: #1a1a2e;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #2563eb;
+      background: #f8faff;
+    }
+
+    /* ========== Services ========== */
+    .services {
+      background: #fff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      padding: 40px 32px;
+      background: #f8faff;
+      border: 1px solid #e8edf5;
+      border-radius: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .service-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a2e;
+    }
+
+    .service-card p {
+      font-size: 15px;
+      color: #4a4a6a;
+      line-height: 1.8;
+    }
+
+    /* ========== Company ========== */
+    .company {
+      background: #f8faff;
+    }
+
+    .company-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .company-table tr {
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    .company-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .company-table th {
+      text-align: left;
+      padding: 20px 32px;
+      background: #f8faff;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2563eb;
+      width: 180px;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    .company-table td {
+      padding: 20px 32px;
+      font-size: 15px;
+      color: #1a1a2e;
+      line-height: 1.8;
+    }
+
+    /* ========== Contact ========== */
+    .contact {
+      background: #fff;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a2e;
+    }
+
+    .contact-info p {
+      font-size: 15px;
+      color: #4a4a6a;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contact-detail-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f4ff;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #2563eb;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-detail-text {
+      font-size: 14px;
+      color: #4a4a6a;
+      line-height: 1.7;
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-size: 14px;
+      color: #1a1a2e;
+      margin-bottom: 2px;
+    }
+
+    .contact-form {
+      background: #f8faff;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid #e8edf5;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: #dc2626;
+      margin-left: 4px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      background: #fff;
+      color: #1a1a2e;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      background: #1a1a2e;
+      color: #9ca3af;
+      padding: 48px 0 32px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      max-width: 320px;
+    }
+
+    .footer-brand .nav-logo {
+      color: #fff;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #6b7280;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-nav-group h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-nav-group ul {
+      list-style: none;
+    }
+
+    .footer-nav-group li {
+      margin-bottom: 10px;
+    }
+
+    .footer-nav-group a {
+      font-size: 13px;
+      color: #6b7280;
+      transition: color 0.2s;
+    }
+
+    .footer-nav-group a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 120px 0 64px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .section-heading {
+        font-size: 22px;
+        margin-bottom: 32px;
+      }
+
+      .company-table th,
+      .company-table td {
+        padding: 16px 20px;
+        display: block;
+        width: 100%;
+      }
+
+      .company-table th {
+        padding-bottom: 4px;
+        border-bottom: none;
+      }
+
+      .company-table td {
+        padding-top: 4px;
+      }
+
+      .contact-form {
+        padding: 28px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-nav {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="nav-logo"><span>V</span>ancouver Inc.</a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services">Service</a></li>
+          <li><a href="#company">Company</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Education &times; Technology</div>
+        <h1>教育と効率化で、<br><span class="accent">未来を創る。</span></h1>
+        <p>バンクーバー株式会社は、教育用アプリケーションの企画・開発から、業務効率化ツールの提供まで、テクノロジーの力で社会に価値を届けます。</p>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary">
+            サービスを見る
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn-secondary">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="section services" id="services">
+    <div class="container">
+      <p class="section-title">Service</p>
+      <h2 class="section-heading">事業内容</h2>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>教育用アプリ開発</h3>
+          <p>学習体験を革新するモバイルアプリケーションを企画・開発・運営しています。直感的なUIと最新のテクノロジーで、学びをより身近に。</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>業務効率化ツール</h3>
+          <p>企業の業務プロセスを分析し、最適な効率化ソリューションを提供。ツール開発から導入コンサルティングまでワンストップで支援します。</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>受託開発</h3>
+          <p>お客様のビジネス要件に合わせた高品質なソフトウェアを設計・開発。iOS/Androidアプリからウェブシステムまで幅広く対応します。</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Company ===== -->
+  <section class="section company" id="company">
+    <div class="container">
+      <p class="section-title">Company</p>
+      <h2 class="section-heading">会社概要</h2>
+      <table class="company-table">
+        <tr>
+          <th>会社名</th>
+          <td>バンクーバー株式会社（Vancouver Inc.）</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒100-6105<br>東京都千代田区永田町2-11-1<br>山王パークタワー5階 トラスティーズコンサルティングLLP内</td>
+        </tr>
+        <tr>
+          <th>代表取締役</th>
+          <td>松﨑 為久 / 松﨑 優一郎</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>03-3596-0515</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>
+            教育用アプリケーションの企画・開発・運営<br>
+            業務効率化ツールの提供およびコンサルティング<br>
+            ソフトウェア受託開発
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <p class="section-title">Contact</p>
+      <h2 class="section-heading">お問い合わせ</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>お気軽にご相談ください</h3>
+          <p>サービスに関するご質問、お見積りのご依頼、協業のご提案など、お気軽にお問い合わせください。</p>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>所在地</strong>
+              東京都千代田区永田町2-11-1<br>山王パークタワー5階
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>電話番号</strong>
+              03-3596-0515
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>メール</strong>
+              info@vancouver-inc.co.jp
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>お名前<span class="required">*</span></label>
+            <input type="text" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label>会社名</label>
+            <input type="text" placeholder="株式会社サンプル">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="required">*</span></label>
+            <input type="email" placeholder="example@company.co.jp" required>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ種別</label>
+            <select>
+              <option value="">選択してください</option>
+              <option>サービスに関するご質問</option>
+              <option>お見積りのご依頼</option>
+              <option>協業・パートナーシップ</option>
+              <option>採用について</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>お問い合わせ内容<span class="required">*</span></label>
+            <textarea placeholder="お問い合わせ内容をご記入ください" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="nav-logo"><span>V</span>ancouver Inc.</span>
+          <p>教育と効率化で未来を創る。テクノロジーの力で社会に新しい価値を届けます。</p>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-nav-group">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#company">会社概要</a></li>
+              <li><a href="#services">事業内容</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Vancouver Inc. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Form submit handler (mock)
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('お問い合わせありがとうございます。担当者より折り返しご連絡いたします。');
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
